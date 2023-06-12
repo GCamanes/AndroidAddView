@@ -28,8 +28,7 @@ public class MainActivity extends AppCompatActivity {
 
         ScrollView scrollView = findViewById(R.id.scrollView);
 
-        LinearLayout verticalLayout = new LinearLayout(this.getApplicationContext());
-        verticalLayout.setOrientation(LinearLayout.VERTICAL);
+        LinearLayout verticalLayout = new VerticalLayout(this.getApplicationContext());
         scrollView.addView(verticalLayout);
 
         binding.fabPlus.setOnClickListener(view -> addView(verticalLayout));
