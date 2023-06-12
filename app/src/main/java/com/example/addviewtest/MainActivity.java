@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
             Log.e("REMOVE", "ID : " + rectangleView.getId());
             layout.removeView(rectangleView);
         } else {
-            Log.e("REMOVE", "list empty");
+            Log.e("REMOVE", "Layout has no children");
         }
     }
 
