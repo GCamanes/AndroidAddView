@@ -1,6 +1,5 @@
 package com.example.addviewtest;
 
-import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,8 +11,6 @@ import com.example.addviewtest.databinding.ActivityMainBinding;
 
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
-
-import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -31,34 +28,23 @@ public class MainActivity extends AppCompatActivity {
         LinearLayout verticalLayout = new VerticalLayout(this.getApplicationContext());
         scrollView.addView(verticalLayout);
 
-        binding.fabPlus.setOnClickListener(view -> addView(verticalLayout));
+        binding.fabPlus.setOnClickListener(view -> addRectangleView(verticalLayout));
         binding.fabMinus.setOnClickListener(view -> removeView(verticalLayout));
     }
 
-    void addView(LinearLayout layout) {
-        View rectangleView = new View(this);
-        rectangleView.setBackgroundColor(createViewColor());
-        rectangleView.setId(View.generateViewId());
-        LinearLayout.LayoutParams verticalParams = new LinearLayout.LayoutParams(200, 250);
-        verticalParams.setMargins(0, 0, 0, 1);
-        rectangleView.setLayoutParams(verticalParams);
+    void addRectangleView(LinearLayout layout) {
+        View rectangleView = new RectangleView(this);
         layout.addView(rectangleView);
-        Log.e("ADD", "ID : " + rectangleView.getId());
     }
 
     void removeView(LinearLayout layout) {
         final int childCount = layout.getChildCount();
         if (childCount > 0) {
-            View rectangleView = layout.getChildAt(childCount - 1);
-            Log.e("REMOVE", "ID : " + rectangleView.getId());
-            layout.removeView(rectangleView);
+            View view = layout.getChildAt(childCount - 1);
+            Log.e("REMOVE VIEW", "ID " + view.getId());
+            layout.removeView(view);
         } else {
-            Log.e("REMOVE", "Layout has no children");
+            Log.e("REMOVE VIEW", "Layout has no children");
         }
-    }
-
-    int createViewColor() {
-        Random rnd = new Random();
-        return Color.argb(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256));
     }
 }
