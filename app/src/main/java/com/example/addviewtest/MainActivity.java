@@ -28,7 +28,8 @@ public class MainActivity extends AppCompatActivity {
         LinearLayout verticalLayout = new VerticalLayout(this.getApplicationContext());
         scrollView.addView(verticalLayout);
 
-        binding.fabPlus.setOnClickListener(view -> addTextView(verticalLayout));
+        binding.fabPlus.setOnClickListener(view -> addRectangleView(verticalLayout));
+        binding.fabPlusText.setOnClickListener(view -> addTextView(verticalLayout));
         binding.fabMinus.setOnClickListener(view -> removeView(verticalLayout));
     }
 

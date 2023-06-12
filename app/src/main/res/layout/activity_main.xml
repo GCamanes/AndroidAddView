@@ -24,6 +24,17 @@
         android:layout_marginBottom="16dp"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabPlusText"
+        android:src="@drawable/baseline_add_24"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/teal_700"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="100dp"
+        android:layout_marginBottom="16dp"/>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fabMinus"
         android:src="@drawable/baseline_remove_24"
         android:layout_width="wrap_content"
