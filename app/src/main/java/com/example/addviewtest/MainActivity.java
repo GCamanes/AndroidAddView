@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.util.Log;
 import android.view.View;
 
 import com.example.addviewtest.databinding.ActivityMainBinding;
@@ -31,17 +32,27 @@ public class MainActivity extends AppCompatActivity {
         verticalLayout.setOrientation(LinearLayout.VERTICAL);
         scrollView.addView(verticalLayout);
 
-        binding.fab.setOnClickListener(view -> addView(verticalLayout));
+        binding.fabPlus.setOnClickListener(view -> addView(verticalLayout));
+        binding.fabMinus.setOnClickListener(view -> removeView(verticalLayout));
     }
 
     void addView(LinearLayout layout) {
-        Random rnd = new Random();
         View rectangleView = new View(this);
-        int color = Color.argb(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256));
-        rectangleView.setBackgroundColor(color);
+        rectangleView.setBackgroundColor(createViewColor());
+        rectangleView.setId(View.generateViewId());
         LinearLayout.LayoutParams verticalParams = new LinearLayout.LayoutParams(200, 250);
         verticalParams.setMargins(0, 0, 0, 1);
         rectangleView.setLayoutParams(verticalParams);
         layout.addView(rectangleView);
+    }
+
+    void removeView(LinearLayout layout) {
+        Log.e("REMOVE", "test");
+    }
+
+    int createViewColor() {
+        Random rnd = new Random();
+        int color = Color.argb(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256));
+        return color;
     }
 }
