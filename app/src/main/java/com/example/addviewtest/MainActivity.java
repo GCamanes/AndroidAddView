@@ -13,11 +13,15 @@ import com.example.addviewtest.databinding.ActivityMainBinding;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
+
+    private List<Integer> viewIds;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +38,8 @@ public class MainActivity extends AppCompatActivity {
 
         binding.fabPlus.setOnClickListener(view -> addView(verticalLayout));
         binding.fabMinus.setOnClickListener(view -> removeView(verticalLayout));
+
+        viewIds = new ArrayList<>();
     }
 
     void addView(LinearLayout layout) {
@@ -43,11 +49,23 @@ public class MainActivity extends AppCompatActivity {
         LinearLayout.LayoutParams verticalParams = new LinearLayout.LayoutParams(200, 250);
         verticalParams.setMargins(0, 0, 0, 1);
         rectangleView.setLayoutParams(verticalParams);
+        viewIds.add(rectangleView.getId());
         layout.addView(rectangleView);
+        Log.e("ADD", "ID : " + rectangleView.getId());
+        Log.e("LIST", viewIds.toString());
     }
 
     void removeView(LinearLayout layout) {
-        Log.e("REMOVE", "test");
+        if (viewIds.size() > 0) {
+            int lastId = viewIds.get(viewIds.size() - 1);
+            View rectangleView = findViewById(lastId);
+            layout.removeView(rectangleView);
+            viewIds.remove(viewIds.size() - 1);
+            Log.e("REMOVE", "ID : " + lastId);
+            Log.e("LIST", viewIds.toString());
+        } else {
+            Log.e("REMOVE", "list empty");
+        }
     }
 
     int createViewColor() {
